@@ -25,6 +25,8 @@ export class ReportGenerator {
             );
             const report = new GC.ActiveReports.Core.PageReport();
             await report.load(reportUrl);
+            // stringfy the json data and add it to the report datasource
+						// report._instance.definition.DataSources[0].ConnectionProperties.ConnectString = `jsondata=${JSON.stringify(reportData)}`;
             const doc = await report.run();
             const result = await GC.ActiveReports.PdfExport.exportDocument(
               doc,
