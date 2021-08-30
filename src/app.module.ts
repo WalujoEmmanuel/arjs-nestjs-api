@@ -7,16 +7,16 @@ import { ReportModule } from './report/report.module';
 
 @Module({
   imports: [
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'resources'),
-    }),
-    PuppeteerModule.forRoot(),
+    ReportModule,
     GraphQLModule.forRoot({
       autoSchemaFile: true,
       debug: false,
       playground: true,
     }),
-    ReportModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'resources'),
+    }),
+    PuppeteerModule.forRoot(),
   ],
   controllers: [],
   providers: [],
