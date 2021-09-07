@@ -1,20 +1,18 @@
 import { Injectable } from '@nestjs/common';
-import type { BrowserContext } from 'puppeteer';
-import { InjectContext } from 'nest-puppeteer';
+import * as puppeteer from 'puppeteer';
 import * as fs from 'fs';
 
 @Injectable()
 export class ReportGenerator {
-  constructor(
-    @InjectContext() private readonly browserContext: BrowserContext,
-  ) {}
+  constructor() {}
 
   async generate(ReportName: string, ReportUrl: string, data: any) {
-    const page = await this.browserContext.newPage();
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
     await page.goto(`http://localhost:8007/index.html`);
 
     const GC = await page.evaluate('GC');
-    const reportFile = `${__dirname}/${ReportName}.pdf`;
+    const reportFile = `${__dirname}/../../reports/${ReportName}.pdf`;
 
     const pdfString: any = await page.evaluate(
       ({ reportUrl, reportData }) => {
@@ -49,7 +47,7 @@ export class ReportGenerator {
 
     const pdfData = Buffer.from(pdfString, 'binary');
     fs.writeFileSync(reportFile, pdfData);
-
+    await browser.close();
     return reportFile;
   }
 }

@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ServeStaticModule } from '@nestjs/serve-static';
-import { PuppeteerModule } from 'nest-puppeteer';
 import { join } from 'path';
 import { ReportModule } from './report/report.module';
 
@@ -16,7 +15,6 @@ import { ReportModule } from './report/report.module';
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'resources'),
     }),
-    PuppeteerModule.forRoot(),
   ],
   controllers: [],
   providers: [],

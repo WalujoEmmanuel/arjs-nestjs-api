@@ -28,7 +28,6 @@
     "@nestjs/serve-static": "^2.2.2",
     "apollo-server-express": "^3.3.0",
     "graphql": "^15.5.1",
-    "nest-puppeteer": "^1.1.1",
     "puppeteer": "^10.2.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",

@@ -155,7 +155,7 @@ export class ReportService {
 
     const generatedReport = await this.reportGenerator.generate(
       'Sub Sub Programmes Allocations',
-      'reports/ProductsList.rdlx-json',
+      'reports/Test.rdlx-json',
       reportData,
     );
 
